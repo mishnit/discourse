@@ -5,6 +5,8 @@ import { notEmpty } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { popupAjaxError } from "discourse/lib/ajax-error";
 import bootbox from "bootbox";
+import { emojiUnescape } from "discourse/lib/text";
+import discourseComputed from "discourse-common/utils/decorators";
 
 export default Controller.extend(ModalFunctionality, {
   userStatusService: service("user-status"),
@@ -23,6 +25,11 @@ export default Controller.extend(ModalFunctionality, {
         showDeleteButton: true,
       });
     }
+  },
+
+  @discourseComputed("emoji")
+  emojiHtml(emoji) {
+    return emojiUnescape(`:${emoji}:`);
   },
 
   @action

@@ -1,7 +1,9 @@
 {{#d-modal-body}}
   {{#conditional-loading-spinner condition=loading}}
     <div class="control-group user-status-description-wrap">
-      {{d-button class="btn btn-icon btn-emoji" icon=emoji action=(action toggleEmojiPicker)}}
+      <div role="button" class="btn-emoji" onclick={{action "toggleEmojiPicker"}}>
+        {{html-safe this.emojiHtml}}
+      </div>
       {{input
         class="user-status-description"
         placeholder=(i18n "user_status.what_are_you_doing")
