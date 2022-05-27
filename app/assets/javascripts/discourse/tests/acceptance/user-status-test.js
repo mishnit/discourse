@@ -14,9 +14,16 @@ async function openUserStatusModal() {
   await click(".user-status button");
 }
 
+async function pickEmoji(emoji) {
+  await click(".btn-emoji");
+  await fillIn(".emoji-picker-content .filter", emoji);
+  await click(".results .emoji");
+}
+
 acceptance("User Status", function (needs) {
   const userStatusFallbackEmoji = "mega";
   const userStatus = "off to dentist";
+  const userStatusEmoji = "tooth";
   const userId = 1;
 
   needs.user({ id: userId });
@@ -121,9 +128,7 @@ acceptance("User Status", function (needs) {
     await openUserStatusModal();
 
     await fillIn(".user-status-description", userStatus);
-    await click(".btn-emoji");
-    await fillIn(".emoji-picker-content .filter", "palm_tree");
-    await click(".results .emoji");
+    await pickEmoji(userStatusEmoji);
     await click(".btn-primary");
 
     assert.equal(
