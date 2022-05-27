@@ -8,6 +8,12 @@ import {
 import { click, fillIn, visit } from "@ember/test-helpers";
 import { test } from "qunit";
 
+async function openUserStatusModal() {
+  await click(".header-dropdown-toggle.current-user");
+  await click(".menu-links-row .user-preferences-link");
+  await click(".user-status button");
+}
+
 acceptance("User Status", function (needs) {
   const userStatusFallbackEmoji = "mega";
   const userStatus = "off to dentist";
@@ -90,9 +96,7 @@ acceptance("User Status", function (needs) {
     const emoji = "palm_tree";
 
     await visit("/");
-    await click(".header-dropdown-toggle.current-user");
-    await click(".menu-links-row .user-preferences-link");
-    await click(".user-status button");
+    await openUserStatusModal();
 
     assert.ok(
       exists(`.btn-emoji .d-icon-${defaultStatusEmoji}`),
@@ -114,9 +118,7 @@ acceptance("User Status", function (needs) {
     this.siteSettings.enable_user_status = true;
 
     await visit("/");
-    await click(".header-dropdown-toggle.current-user");
-    await click(".menu-links-row .user-preferences-link");
-    await click(".user-status button");
+    await openUserStatusModal();
 
     await fillIn(".user-status-description", userStatus);
     await click(".btn-emoji");
@@ -152,9 +154,8 @@ acceptance("User Status", function (needs) {
     const updatedStatus = "off to dentist the second time";
 
     await visit("/");
-    await click(".header-dropdown-toggle.current-user");
-    await click(".menu-links-row .user-preferences-link");
-    await click(".user-status button");
+    await openUserStatusModal();
+
     await fillIn(".user-status-description", updatedStatus);
     await click(".btn-primary");
 
@@ -173,9 +174,7 @@ acceptance("User Status", function (needs) {
     updateCurrentUser({ status: { description: userStatus } });
 
     await visit("/");
-    await click(".header-dropdown-toggle.current-user");
-    await click(".menu-links-row .user-preferences-link");
-    await click(".user-status button");
+    await openUserStatusModal();
     await click(".btn.delete-status");
 
     assert.notOk(exists(".header-dropdown-toggle .user-status-background"));
@@ -186,9 +185,7 @@ acceptance("User Status", function (needs) {
     updateCurrentUser({ status: { description: userStatus } });
 
     await visit("/");
-    await click(".header-dropdown-toggle.current-user");
-    await click(".menu-links-row .user-preferences-link");
-    await click(".user-status button");
+    await openUserStatusModal();
 
     assert.ok(exists(".btn.delete-status"));
   });
@@ -198,9 +195,7 @@ acceptance("User Status", function (needs) {
     updateCurrentUser({ status: null });
 
     await visit("/");
-    await click(".header-dropdown-toggle.current-user");
-    await click(".menu-links-row .user-preferences-link");
-    await click(".user-status button");
+    await openUserStatusModal();
 
     assert.notOk(exists(".btn.delete-status"));
   });
