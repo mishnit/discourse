@@ -21,7 +21,6 @@ async function pickEmoji(emoji) {
 }
 
 acceptance("User Status", function (needs) {
-  const userStatusFallbackEmoji = "mega";
   const userStatus = "off to dentist";
   const userStatusEmoji = "tooth";
   const userId = 1;
@@ -70,7 +69,9 @@ acceptance("User Status", function (needs) {
 
   test("shows user status on loaded page", async function (assert) {
     this.siteSettings.enable_user_status = true;
-    updateCurrentUser({ status: { description: userStatus } });
+    updateCurrentUser({
+      status: { description: userStatus, emoji: userStatusEmoji },
+    });
 
     await visit("/");
     await click(".header-dropdown-toggle.current-user");
@@ -85,13 +86,13 @@ acceptance("User Status", function (needs) {
 
     assert.equal(
       query("div.quick-access-panel li.user-status img.emoji").alt,
-      `:${userStatusFallbackEmoji}:`,
+      `:${userStatusEmoji}:`,
       "shows user status emoji on the menu"
     );
 
     assert.equal(
       query(".header-dropdown-toggle .user-status-background img.emoji").alt,
-      `:${userStatusFallbackEmoji}:`,
+      `:${userStatusEmoji}:`,
       "shows user status emoji on the user avatar in the header"
     );
   });
