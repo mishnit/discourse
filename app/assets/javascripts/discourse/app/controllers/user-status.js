@@ -50,8 +50,8 @@ export default Controller.extend(ModalFunctionality, {
   },
 
   @action
-  emojiSelected(code) {
-    this.set("emoji", code);
+  emojiSelected(emoji) {
+    this.set("emoji", emoji);
     this.set("emojiPickerIsActive", false);
   },
 
@@ -73,9 +73,11 @@ export default Controller.extend(ModalFunctionality, {
   },
 
   _resetModal() {
-    this.set("description", null);
-    this.set("emoji", null);
-    this.set("showDeleteButton", false);
-    this.set("emojiPickerIsActive", false);
+    this.setProperties({
+      description: null,
+      emoji: null,
+      showDeleteButton: true,
+      emojiPickerIsActive: false,
+    });
   },
 });
