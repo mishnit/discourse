@@ -133,7 +133,7 @@ acceptance("User Status", function (needs) {
 
     assert.equal(
       query(".header-dropdown-toggle .user-status-background img.emoji").alt,
-      `:${userStatusFallbackEmoji}:`,
+      `:${userStatusEmoji}:`,
       "shows user status emoji on the user avatar in the header"
     );
 
@@ -148,7 +148,7 @@ acceptance("User Status", function (needs) {
 
     assert.equal(
       query("div.quick-access-panel li.user-status img.emoji").alt,
-      `:${userStatusFallbackEmoji}:`,
+      `:${userStatusEmoji}:`,
       "shows user status emoji on the menu"
     );
   });
