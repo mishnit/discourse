@@ -34,8 +34,14 @@
       width: 100%;
       align-items: end;
 
-      button {
+      .user-status-picker {
+        display: flex;
+        width: 100%;
+      }
+
+      .btn-emoji {
         margin-bottom: 0.5em;
+        margin-left: 3px;
         margin-right: 3px;
       }
     }
