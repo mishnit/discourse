@@ -23,12 +23,6 @@
       width: 100%;
     }
 
-    .ember-text-field.user-status-description {
-      min-width: 220px;
-      width: 100%;
-      margin-bottom: 0.5em;
-    }
-
     .user-status-picker-wrap {
       display: inline-flex;
       width: 100%;
@@ -37,12 +31,19 @@
       .user-status-picker {
         display: flex;
         width: 100%;
-      }
+        border: 1px solid var(--primary-medium);
 
-      .btn-emoji {
-        margin-bottom: 0.5em;
-        margin-left: 3px;
-        margin-right: 3px;
+        .btn-emoji {
+          margin-left: 3px;
+          margin-right: 3px;
+        }
+
+        .user-status-description {
+          width: 100%;
+          margin-bottom: 0;
+          border: none;
+          outline: none;
+        }
       }
     }
   }
